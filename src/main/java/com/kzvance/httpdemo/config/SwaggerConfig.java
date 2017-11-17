@@ -31,13 +31,13 @@ public class SwaggerConfig {
 				.apiInfo(apiInfo())
 				.select()
 				.apis(RequestHandlerSelectors.basePackage("com.kzvance"))
-				.paths(postPaths())
+				.paths(postPaths())				
 				.build();
 	}
 	
 	@SuppressWarnings("unchecked")
 	private Predicate<String> postPaths() {
-		return or(regex("/api/posts.*"), regex("/greeting.*"), regex("/hello.*"));
+		return or(regex("/hello.*"),regex("/greeting.*"));
 	}
 
 	private ApiInfo apiInfo() {

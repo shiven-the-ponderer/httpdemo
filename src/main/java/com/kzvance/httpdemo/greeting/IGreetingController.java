@@ -9,14 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kzvance.httpdemo.bean.GreetingService;
 import com.kzvance.httpdemo.bean.RequestPOJO;
 
+import io.swagger.annotations.ApiOperation;
+
 
 @RestController
 public class IGreetingController {
 	@Autowired
 	private GreetingService gService;
-	
-	@RequestMapping(method = RequestMethod.POST, value="/greeting")
-	public String getGreeting(@RequestBody RequestPOJO req	){
+	@ApiOperation(response = RequestPOJO.class, value = "${summary.greeting}")
+	@RequestMapping( value="/greeting", method=RequestMethod.POST, produces="application/json")
+	public Greeting getGreeting(@RequestBody RequestPOJO req	){
 		gService.setReq(req);
 		return gService.getMyGreeting();
 	}
