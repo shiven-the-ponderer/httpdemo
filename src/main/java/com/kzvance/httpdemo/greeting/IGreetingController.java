@@ -10,6 +10,7 @@ import com.kzvance.httpdemo.bean.GreetingService;
 import com.kzvance.httpdemo.bean.RequestPOJO;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 
 @RestController
@@ -18,7 +19,7 @@ public class IGreetingController {
 	private GreetingService gService;
 	@ApiOperation(response = RequestPOJO.class, value = "${summary.greeting}")
 	@RequestMapping( value="/greeting", method=RequestMethod.POST, produces="application/json")
-	public Greeting getGreeting(@RequestBody RequestPOJO req	){
+	public Greeting getGreeting(@ApiParam(value = "Name for greeting", required = true) @RequestBody RequestPOJO req	){
 		gService.setReq(req);
 		return gService.getMyGreeting();
 	}
